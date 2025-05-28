@@ -1,0 +1,109 @@
+﻿<Window x:Class="SecretGame.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Жасырын Сөздер Ойыны" Height="600" Width="600"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF00E5FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="4" Direction="315" Color="Black" Opacity="0.7" BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF00B8D4"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="5" Direction="315" Color="Black" Opacity="0.8" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF0097A7"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="2" Direction="315" Color="Black" Opacity="0.5" BlurRadius="5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="3" Direction="315" Color="Black" Opacity="0.7" BlurRadius="6"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Background" Value="#FF1A3C4D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="3" Direction="315" Color="Black" Opacity="0.7" BlurRadius="6"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="#FF2A5C7D"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF1BFFFF" Offset="0"/>
+                <GradientStop Color="#FF0077C2" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="LevelTextBlock" Text="1-деңгей" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="ScoreTextBlock" Text="Ұпай: 0" FontSize="22" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="HiddenWordHint" Text="Сөз: _ _ _ _ _" FontSize="28" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="HintWordTextBlock" Text="Подсказка: " FontSize="22" HorizontalAlignment="Center"/>
+            <Grid x:Name="GuessGrid" Margin="15"/>
+            <TextBox x:Name="GuessInput" MaxLength="5" HorizontalAlignment="Center" KeyDown="GuessInput_KeyDown"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="SubmitButton" Content="Жіберу" Width="140" Click="SubmitButton_Click"/>
+                <Button x:Name="RestartButton" Content="Қайта бастау" Width="140" Click="RestartButton_Click"/>
+            </StackPanel>
+            <TextBlock x:Name="ResultTextBlock" Text="Сөзді табыңыз!" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

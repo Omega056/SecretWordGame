@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -10,5 +9,10 @@ namespace SecretGame
 {
     public partial class App : Application
     {
+        public App()
+        {
+            // Ensure the data directory is set to the application folder
+            AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
+        }
     }
 }

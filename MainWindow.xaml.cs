@@ -28,6 +28,15 @@ namespace SecretGame
             {
                 string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "users.db");
                 string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error.log");
+                string interopPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "x86", "SQLite.Interop.dll");
+
+                // Check if SQLite.Interop.dll exists
+                if (!File.Exists(interopPath))
+                {
+                    File.AppendAllText(logPath, $"[{DateTime.Now}] Error: SQLite.Interop.dll not found at {interopPath}\n");
+                    MessageBox.Show("SQLite.Interop.dll not found. Please rebuild the project or install required dependencies.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 if (!File.Exists(dbPath))
                 {
